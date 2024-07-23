@@ -1,0 +1,22 @@
+
+services:
+  install-vpn:
+    image: willhallonline/ansible:2.16.4-bookworm
+    volumes:
+      - ${HOME}/.ssh/:/root/.ssh/
+      - "./:/ansible/"
+    # upgrade community.docker for workaround: https://github.com/ansible-collections/community.docker/issues/868
+    command:
+      - sh
+      - -c
+      - |
+        mkdir -p /root/.ansible/plugins/modules
+        mkdir -p /lib/ansible/module_utils/
+        mkdir -p /usr/local/lib/python3.11/dist-packages/ansible
+        git -C ansible-module-yandex-cloud pull || git clone https://github.com/patsevanton/ansible-module-yandex-cloud.git
+        cp ansible-module-yandex-cloud/modules/* /root/.ansible/plugins/modules/.
+        cp ansible-module-yandex-cloud/module_utils/yc.py /usr/local/lib/python3.11/dist-packages/ansible/module_utils/yc.py
+        pip install yandexcloud
+        ansible-galaxy collection install community.docker --upgrade
+        chmod 400 /root/.ssh/* && \
+        ansible-playbook playbook.yml
