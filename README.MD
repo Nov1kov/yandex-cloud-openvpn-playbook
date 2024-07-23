@@ -8,7 +8,7 @@ Ansible playbook for deploying OpenVPN with a single click in Yandex Cloud.
 
 Yandex.Cloud позволяет создать недорогую виртуальную машину preemptive (прерываемую). Этот скрипт поможет вам создать такую виртуальную машину за один клик.
 
-Используется образ [dockovpn](https://github.com/dockovpn/dockovpn) для openvpn и плагин для ansible - [ansible-module-yandex-cloud](https://github.com/patsevanton/ansible-module-yandex-cloud.git)
+Используется образ [dockovpn](https://github.com/dockovpn/dockovpn) для OpenVPN и плагин для Ansible - [ansible-module-yandex-cloud](https://github.com/patsevanton/ansible-module-yandex-cloud.git).
 
 ## Настройка
 
@@ -17,7 +17,7 @@ Yandex.Cloud позволяет создать недорогую виртуал
    - `folder_id` (идентификатор каталога)
    - `subnet_id` (идентификатор подсети)
    Подробнее о нахождении этих параметров можно узнать [здесь](https://yandex.cloud/ru/docs/resource-manager/operations/folder/get-id#console_1).
-3. Сгенерируйте SSH ключ:
+3. Сгенерируйте SSH ключ, если его нету:
    ```shell
    ssh-keygen -t ed25519
    ```
@@ -38,13 +38,18 @@ subnet_id: "e9bi... c"
 docker compose up
 ```
 
-### Если установлен ansbile на машине:
+### Linux/Mac
+
+_TBD_
+
+### Docker
 
 _TBD_
 
 
 После успешного выполнения playbook (обычно это занимает около 5 минут) вы получите сообщение с ссылкой на файл `client.ovpn`. 
 Пример сообщения:
+
 `"Config server started, download your client.ovpn config at http://88.200.100.23:80/ \nAfter you download your client config, http server will be shut down!"`
 
 ## Alternatives:
