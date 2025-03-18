@@ -56,3 +56,4 @@ _TBD_
 - https://github.com/nikitamishagin/ownvpn
 - https://github.com/ptr-dorjin/ansible-vpn-server
 - https://github.com/andrey-yantsen/yandex-cloud-vpn
+- https://github.com/trailofbits/algo

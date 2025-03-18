@@ -102,17 +102,18 @@
         repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
 
+    - name: Remove apt lock file
+      file:
+        state: absent
+        path: "/var/lib/dpkg/lock-frontend"
+      become: true
+
     - name: Install docker with plugins
       apt:
         pkg:
           - docker-ce
           - docker-compose-plugin
         state: latest
-
-    - name: Install Docker Module for Python
-      pip:
-        name:
-          - docker
 
     - name: Run Docker container with OpenVPN
       docker_container:
