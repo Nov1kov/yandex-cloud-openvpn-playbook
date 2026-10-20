@@ -12,7 +12,7 @@ Yandex.Cloud позволяет создать недорогую виртуал
 
 ## Настройка
 
-1. Получите OAuth токен по инструкции [здесь](https://yandex.cloud/ru/docs/iam/concepts/authorization/oauth-token).
+1. Создайте сервисный аккаунт с ролью `editor` на каталог и скачайте для него авторизованный ключ (JSON) в корень проекта под именем `sa-key.json` ([инструкция](https://yandex.cloud/ru/docs/iam/operations/authentication/manage-authorized-keys)).
 2. Найдите в Yandex.Cloud панеле следующие параметры:
    - `folder_id` (идентификатор каталога)
    - `subnet_id` (идентификатор подсети)
@@ -23,10 +23,10 @@ Yandex.Cloud позволяет создать недорогую виртуал
    ```
 4. Создать файл `vars.yml`
 ```yaml
-yc_oauth_token: "y0_AgA .... token"
 ssh_private_key: "/root/.ssh/id_ed25519"
 folder_id: "b1gr... c"
 subnet_id: "e9bi... c"
+zone_id: "ru-central1-d" # зона, в которой находится подсеть subnet_id
 ```
 Примечание: В примере путь до ключа указывать относительно контейнера. 
 

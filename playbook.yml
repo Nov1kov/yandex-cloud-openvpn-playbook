@@ -22,7 +22,7 @@
         - name: Create vm
           ycc_vm:
             auth:
-              token: "{{ yc_oauth_token }}"
+              service_account_key: "{{ lookup('file', 'sa-key.json') | from_json }}"
             name: vpn
             metadata:
               user-data: |
@@ -39,7 +39,8 @@
                     ssh_authorized_keys:
                       - {{ ssh_public_key.stdout }}
             folder_id: "{{ folder_id }}"
-            platform_id: "Intel Cascade Lake"
+            zone_id: "{{ zone_id | default('ru-central1-d') }}"
+            platform_id: "Intel Ice Lake"
             core_fraction: 20
             cores: 2
             memory: 2
