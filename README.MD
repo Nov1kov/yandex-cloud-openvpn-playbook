@@ -47,10 +47,17 @@ _TBD_
 _TBD_
 
 
-После успешного выполнения playbook (обычно это занимает около 5 минут) вы получите сообщение с ссылкой на файл `client.ovpn`. 
-Пример сообщения:
+После успешного выполнения playbook (обычно это занимает около 5 минут) файл `client.ovpn` будет автоматически скачан в текущую директорию.
 
-`"Config server started, download your client.ovpn config at http://88.200.100.23:80/ \nAfter you download your client config, http server will be shut down!"`
+### Пересоздать конфиг на уже существующей машине
+
+Если конфиг потерялся или нужен новый, можно пересоздать контейнер (и получить новый `client.ovpn`) без создания новой виртуалки:
+
+```commandline
+VM_IP=<IP_вашей_ВМ> docker compose up
+```
+
+Установка docker и создание ВМ при этом пропускаются.
 
 ## Alternatives:
 - https://github.com/nikitamishagin/ownvpn

@@ -2,6 +2,9 @@
 services:
   install-vpn:
     image: willhallonline/ansible:2.16.4-bookworm
+    environment:
+      # set VM_IP to skip VM creation and just recreate the container on an existing host
+      - VM_IP=${VM_IP:-}
     volumes:
       - ${HOME}/.ssh/:/root/.ssh/
       - "./:/ansible/"
@@ -19,4 +22,4 @@ services:
         pip install yandexcloud
         ansible-galaxy collection install community.docker --upgrade
         chmod 400 /root/.ssh/* && \
-        ansible-playbook playbook.yml
+        ansible-playbook playbook.yml $${VM_IP:+-e vm_ip=$$VM_IP}
